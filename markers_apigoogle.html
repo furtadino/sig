@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style type="text/css">
+      html, body { height: 100%; margin: 10; padding: 10; }
+      #map { height: 70%; }
+      #titulo {text-align: center;}
+    </style>
+    <script type="text/javascript">
+
+function initMap() {
+	var posMinhaCasa = new google.maps.LatLng(-2.548692, -44.183497);
+	var posShopping = new google.maps.LatLng(-2.551652, -44.191742);
+	var posMateus = new google.maps.LatLng(-2.552170, -44.177230);
+	var mapOptions = {
+		zoom: 15,
+		center: posMinhaCasa
+	}
+	var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+	//Marcadores
+	var markerMinhaCasa = new google.maps.Marker({
+		position: posMinhaCasa,
+		title: 'Minha Casa!'
+	});
+	var markerShopping = new google.maps.Marker({
+		position: posShopping,
+		title: 'Shopping Pátio Norte'
+	});
+	var markerMateus = new google.maps.Marker({
+		position: posMateus,
+		title: 'Supermercado Mix Mateus'
+	});
+	markerMinhaCasa.setMap(map);
+	markerShopping.setMap(map);
+	markerMateus.setMap(map);
+
+	//Info Windows
+	var contentMinhaCasa = '<div id="content"><h1>Minha casa</h1><div id="bodyContent"><p>Aqui fica a minha casa</p></div></div>';
+	var contentShopping = '<div id="content"><h1>Shopping</h1><div id="bodyContent"><p>Aqui fica o shopping <b>Pátio Norte</b></p></div></div>';
+	var contentMateus = '<div id="content"><h1>Mix Mateus</h1><div id="bodyContent"><p>Aqui fica o supermercado <b>Mix Mateus</b></p></div></div>';
+
+	var infoWindowMinhaCasa = new google.maps.InfoWindow({
+		content: contentMinhaCasa
+	});
+	var infoWindowShopping = new google.maps.InfoWindow({
+		content: contentShopping
+	});
+	var infoWindowMateus = new google.maps.InfoWindow({
+		content: contentMateus
+	});
+
+	//Evento de click nos marcadores
+	markerMinhaCasa.addListener('click', function() {
+		infoWindowMinhaCasa.open(map, markerMinhaCasa);
+	});
+	markerShopping.addListener('click', function() {
+		infoWindowShopping.open(map, markerShopping);
+	});
+	markerMateus.addListener('click', function() {
+		infoWindowMateus.open(map, markerMateus);
+	});
+}
+
+    </script>
+    <script async defer
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_2QnLJ4K7qq-Z0LVSMRE47UeGm29VZpI&callback=initMap">
+    </script>
+
+
+  </head>
+  <body>
+  	<h3 ><p id="titulo">Igor Tálisson Carreira Furtado</p></h3>
+  	<p>Exemplo do uso de <b>Markers</b> e <b>Info Window</b> na API Google Maps </p>
+  	<p>referência: <a href="https://developers.google.com/maps/documentation/javascript/">https://developers.google.com/maps/documentation/javascript/</a> (última visita Dezembro 25, 2016) </p>
+    <div id="map"></div>   
+    
+  </body>
+</html>
